@@ -1,41 +1,33 @@
-# Welcome to your Expo app 👋
+# AI Travel Planner App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+This app is a travel planning assistant that uses AI to recommend personalized travel itineraries based on user preferences and travel history.
 
-## Get started
+## Features
 
-1. Install dependencies
+* User authentication and authorization
+* User profile management
+* Travel destination recommendation
+* Travel booking
 
-   ```bash
-   npm install
-   ```
+## AI Model
+The NCF model stands for Neural Collaborative Filtering, a deep learning-based approach for recommender systems. NCF models the interaction between users and items (like movies, products, etc.) using neural networks, allowing for more complex and non-linear relationships.
 
-2. Start the app
 
-   ```bash
-    npm start
-   ```
+The app also uses a number of other technologies and services including:
 
-In the output, you'll find options to open the app in a
+* [Expo](https://expo.dev/) for the app's frontend
+* [React Native](https://reactnative.dev/) for the app's mobile app
+* [Firebase](https://firebase.google.com/) for the app's backend
+* [Google Maps](https://developers.google.com/maps) for the app's mapping functionality
+* [Booking.com](https://developers.booking.com/) for the app's booking integration
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## Installation
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+1. Clone the repository: `git clone https://github.com/ntpham3/ai-travel-planner-app.git`
+2. Install dependencies: `npm install`
+3. Start the app: `npm start`
 
-## Learn more
+### Install for mobile app
 
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
-# travel-planner-app
+1. Open the terminal and navigate to the project directory
+2. Install the app on your mobile device: `npm run ios` (for iOS) or `npm run android` (for Android)
