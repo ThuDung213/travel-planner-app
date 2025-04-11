@@ -13,5 +13,5 @@
     "expo-env.d.ts",
     "app/_layout.jsx",
     "components/Places/Country.jsx"
-  ]
+, "components/MyTrips/TripCard.jsx"  ]
 }

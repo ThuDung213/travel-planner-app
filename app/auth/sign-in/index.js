@@ -10,8 +10,8 @@ import React, { useEffect, useState } from "react";
 import { useNavigation, useRouter } from "expo-router";
 import { Colors } from "./../../../constants/Colors";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import axios from "axios"
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "./../../../configs/FireBaseConfig";
 
 export default function SignIn() {
   const navigation = useNavigation();
@@ -25,37 +25,41 @@ export default function SignIn() {
     });
   }, []);
 
-  const onSignIn = async () => {
+  const onSignIn = () => {
     if (!email || !password) {
-      ToastAndroid.show("Vui lòng nhập email và mật khẩu", ToastAndroid.LONG);
+      ToastAndroid.show("Please enter email & password", ToastAndroid.LONG);
       return;
     }
 
-    try {
-      const response = await axios.post("http://10.0.2.2:8000/api/app/login", {
-        email: email,
-        password: password,
-      });
-
-      if (response.status === 200) {
-        const { access_token } = response.data;
-
-        // Lưu token vào AsyncStorage hoặc SecureStore
-        await AsyncStorage.setItem("access_token", access_token);
-
-        ToastAndroid.show("Đăng nhập thành công!", ToastAndroid.SHORT);
-
-        // Chuyển hướng đến trang mytrip
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
         router.replace("/mytrip");
-      } else {
-        ToastAndroid.show("Đăng nhập thất bại, vui lòng thử lại!", ToastAndroid.LONG);
-      }
-    } catch (error) {
-      console.error(error);
-      ToastAndroid.show("Đăng nhập thất bại: Kiểm tra email hoặc mật khẩu.", ToastAndroid.LONG);
-    }
+        console.log(user);
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorMessage, error.code);
+        if (errorCode == "auth/invalid-email") {
+          ToastAndroid.show("Email không hợp lệ", ToastAndroid.LONG);
+        } else if (errorCode == "auth/wrong-password") {
+          ToastAndroid.show("Mật khẩu không hợp lệ", ToastAndroid.LONG);
+        } else if (errorCode == "auth/user-not-found") {
+          ToastAndroid.show(
+            "Không tìm thấy người dùng. Vui lòng kiểm tra email của bạn.",
+            ToastAndroid.LONG
+          );
+        } else if (errorCode == "auth/invalid-credential") {
+          ToastAndroid.show(
+            "Thông tin đăng nhập không hợp lệ",
+            ToastAndroid.LONG
+          );
+        }
+      });
   };
-
   return (
     <View
       style={{
@@ -172,3 +176,4 @@ const styles = StyleSheet.create({
     fontFamily: "outfit",
   },
 });
+
