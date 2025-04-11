@@ -19,7 +19,6 @@ The app also uses a number of other technologies and services including:
 * [React Native](https://reactnative.dev/) for the app's mobile app
 * [Firebase](https://firebase.google.com/) for the app's backend
 * [Google Maps](https://developers.google.com/maps) for the app's mapping functionality
-* [Booking.com](https://developers.booking.com/) for the app's booking integration
 
 ## Installation
 
